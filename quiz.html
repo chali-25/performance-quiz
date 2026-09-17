@@ -1,11 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="use-iframe" content="true">
-<meta name="html-box-height-mode" content="auto">
-<meta name="description" content="绩效面谈互动测试：8道真实场景选择题，测测你的面谈沟通功力">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="绩效面谈互动测试：10道真实场景选择题（含多选），测测你的面谈沟通功力">
 <title>绩效面谈能力测试</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -13,195 +11,170 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
   padding: 20px;
-  color: #333;
 }
 .container {
-  max-width: 720px;
-  margin: 0 auto;
-}
-.header {
-  text-align: center;
-  color: #fff;
-  margin-bottom: 24px;
-}
-.header h1 {
-  font-size: 26px;
-  margin-bottom: 8px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-.header p {
-  font-size: 14px;
-  opacity: 0.9;
-}
-.progress-bar {
-  background: rgba(255,255,255,0.3);
+  background: #fff;
   border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  max-width: 680px;
+  width: 100%;
+  padding: 40px;
+  margin-top: 20px;
+}
+.header { text-align: center; margin-bottom: 30px; }
+.title { font-size: 28px; font-weight: 700; color: #1a237e; margin-bottom: 10px; }
+.subtitle { font-size: 15px; color: #666; line-height: 1.6; }
+.progress-bar {
+  width: 100%;
   height: 8px;
-  margin-bottom: 20px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  margin-bottom: 25px;
   overflow: hidden;
 }
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #4CAF50, #8BC34A);
-  border-radius: 20px;
-  transition: width 0.4s ease;
-  width: 0%;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  border-radius: 4px;
+  transition: width 0.3s ease;
 }
-.question-card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 28px;
-  margin-bottom: 20px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-  animation: slideIn 0.4s ease;
-}
-@keyframes slideIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.question-num {
-  display: inline-block;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: #fff;
-  padding: 4px 14px;
-  border-radius: 20px;
-  font-size: 13px;
+.question-number {
+  font-size: 14px;
+  color: #764ba2;
   font-weight: 600;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
+}
+.question-type {
+  display: inline-block;
+  background: #fff3e0;
+  color: #e65100;
+  font-size: 12px;
+  padding: 2px 10px;
+  border-radius: 10px;
+  margin-left: 8px;
+  font-weight: 500;
 }
 .question-scene {
-  background: #f8f9ff;
-  border-left: 4px solid #667eea;
-  padding: 14px 16px;
+  background: #f5f5f5;
+  border-left: 4px solid #764ba2;
+  padding: 12px 16px;
   border-radius: 0 8px 8px 0;
   margin-bottom: 18px;
   font-size: 14px;
+  color: #333;
   line-height: 1.7;
-  color: #555;
 }
 .question-text {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 600;
-  margin-bottom: 18px;
-  line-height: 1.6;
   color: #222;
+  margin-bottom: 20px;
+  line-height: 1.6;
 }
-.options {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.option-btn {
+.options { display: flex; flex-direction: column; gap: 12px; }
+.option {
   padding: 14px 18px;
   border: 2px solid #e0e0e0;
-  border-radius: 10px;
-  background: #fff;
+  border-radius: 12px;
   cursor: pointer;
-  font-size: 14px;
+  transition: all 0.2s ease;
+  font-size: 15px;
   line-height: 1.6;
-  text-align: left;
-  transition: all 0.25s ease;
+  color: #333;
   display: flex;
   align-items: flex-start;
   gap: 10px;
 }
-.option-btn:hover:not(.disabled) {
-  border-color: #667eea;
-  background: #f8f9ff;
-  transform: translateX(4px);
+.option:hover:not(.disabled) {
+  border-color: #764ba2;
+  background: #f3e5f5;
 }
-.option-btn .option-label {
-  flex-shrink: 0;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: #f0f0f0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  font-size: 13px;
-  color: #666;
+.option.selected {
+  border-color: #764ba2;
+  background: #f3e5f5;
 }
-.option-btn.correct {
-  border-color: #4CAF50;
+.option.correct {
+  border-color: #4caf50;
   background: #e8f5e9;
+  color: #1b5e20;
 }
-.option-btn.correct .option-label {
-  background: #4CAF50;
-  color: #fff;
-}
-.option-btn.wrong {
+.option.wrong {
   border-color: #f44336;
   background: #ffebee;
+  color: #b71c1c;
 }
-.option-btn.wrong .option-label {
-  background: #f44336;
-  color: #fff;
+.option.disabled { cursor: default; }
+.option-letter {
+  font-weight: 700;
+  color: #764ba2;
+  min-width: 20px;
 }
-.option-btn.disabled {
-  cursor: default;
-}
+.option.correct .option-letter { color: #2e7d32; }
+.option.wrong .option-letter { color: #c62828; }
 .explanation {
-  margin-top: 16px;
+  margin-top: 20px;
   padding: 16px;
-  border-radius: 10px;
-  font-size: 14px;
-  line-height: 1.7;
+  border-radius: 12px;
+  display: none;
   animation: fadeIn 0.3s ease;
 }
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-.explanation.correct-exp {
-  background: #e8f5e9;
-  border: 1px solid #a5d6a7;
-}
-.explanation.wrong-exp {
-  background: #fff3e0;
-  border: 1px solid #ffcc80;
-}
+.explanation.show { display: block; }
+.explanation.correct-exp { background: #e8f5e9; border: 1px solid #a5d6a7; }
+.explanation.wrong-exp { background: #fff3e0; border: 1px solid #ffcc80; }
 .explanation-title {
   font-weight: 700;
-  margin-bottom: 8px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  margin-bottom: 10px;
+  font-size: 15px;
 }
 .explanation.correct-exp .explanation-title { color: #2e7d32; }
 .explanation.wrong-exp .explanation-title { color: #e65100; }
-.next-btn {
-  margin-top: 16px;
-  padding: 10px 28px;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: #fff;
-  border: none;
+.explanation-content { font-size: 14px; line-height: 1.8; color: #333; }
+.explanation-content p { margin-bottom: 8px; }
+.explanation-content .wrong-reason {
+  background: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin: 6px 0;
+  font-size: 13px;
+}
+.theory {
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: #e3f2fd;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 13px;
+  color: #1565c0;
+  line-height: 1.7;
+}
+.btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  float: right;
+  margin-top: 20px;
 }
-.next-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102,126,234,0.4);
+.btn-primary {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
 }
-.clearfix::after {
-  content: "";
-  display: table;
-  clear: both;
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(118,75,162,0.4); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+.btn-confirm {
+  background: #ff9800;
+  color: #fff;
 }
-.result-card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 36px;
-  text-align: center;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-  animation: slideIn 0.4s ease;
-}
+.btn-confirm:hover { background: #f57c00; }
+.btn-confirm:disabled { opacity: 0.5; cursor: not-allowed; }
+.result-card { text-align: center; }
 .score-circle {
   width: 140px;
   height: 140px;
@@ -209,443 +182,662 @@ body {
   background: linear-gradient(135deg, #667eea, #764ba2);
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  margin: 0 auto 24px;
+  align-items: center;
+  margin: 0 auto 20px;
   color: #fff;
-  box-shadow: 0 6px 20px rgba(102,126,234,0.4);
 }
-.score-num {
-  font-size: 42px;
-  font-weight: 700;
-  line-height: 1;
-}
-.score-total {
-  font-size: 14px;
-  opacity: 0.9;
-  margin-top: 4px;
-}
+.score-num { font-size: 42px; font-weight: 700; }
+.score-total { font-size: 14px; opacity: 0.9; }
 .result-level {
   font-size: 22px;
   font-weight: 700;
-  margin-bottom: 12px;
-  color: #222;
+  color: #1a237e;
+  margin-bottom: 10px;
 }
 .result-desc {
   font-size: 15px;
-  line-height: 1.8;
   color: #666;
-  margin-bottom: 24px;
-  text-align: left;
-  background: #f8f9ff;
-  padding: 18px;
-  border-radius: 10px;
+  line-height: 1.7;
+  margin-bottom: 25px;
 }
-.restart-btn {
-  padding: 12px 36px;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 15px;
-  font-weight: 600;
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a237e;
+  margin: 25px 0 15px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e0e0e0;
+  text-align: left;
+}
+.tips-list {
+  text-align: left;
+  background: #fff8e1;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 10px;
+}
+.tips-list li {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #5d4037;
+  margin-bottom: 6px;
+}
+.reading-list { display: flex; flex-direction: column; gap: 12px; }
+.reading-card {
+  background: #f5f5f5;
+  border-radius: 12px;
+  padding: 16px;
   cursor: pointer;
   transition: all 0.2s ease;
+  text-decoration: none;
+  display: block;
+  border-left: 4px solid #764ba2;
 }
-.restart-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102,126,234,0.4);
+.reading-card:hover {
+  background: #ede7f6;
+  transform: translateX(4px);
 }
-.hidden { display: none; }
+.reading-card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a237e;
+  margin-bottom: 6px;
+}
+.reading-card-path {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 6px;
+}
+.reading-card-desc {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.6;
+}
+.reading-card-kp {
+  font-size: 12px;
+  color: #764ba2;
+  margin-top: 6px;
+  font-weight: 500;
+}
+.restart-btn {
+  background: #fff;
+  color: #764ba2;
+  border: 2px solid #764ba2;
+}
+.restart-btn:hover { background: #f3e5f5; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 600px) {
+  .container { padding: 24px 18px; }
+  .title { font-size: 22px; }
+  .question-text { font-size: 15px; }
+  .option { font-size: 14px; padding: 12px 14px; }
+}
 </style>
 </head>
 <body>
 <div class="container">
-  <div class="header">
-    <h1>🎯 绩效面谈能力测试</h1>
-    <p>8道真实场景选择题，测测你的面谈沟通功力</p>
+  <div id="quiz-area">
+    <div class="header">
+      <div class="title">🎯 绩效面谈能力测试</div>
+      <div class="subtitle">10道真实场景选择题（含4道多选），测测你的面谈沟通功力<br>按面谈流程顺序出题，全部答对的人不到10%</div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width: 0%"></div></div>
+    <div id="question-container"></div>
   </div>
-  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-  <div id="quizArea"></div>
+  <div id="result-area" style="display:none;"></div>
 </div>
 
 <script>
-// 文章章节配置（后续填入url即可点击跳转）
+// 文章章节配置（对应飞书文档实际章节和block id）
 const articleSections = {
-  "sec-2-1-1": {
-    name: "数据锚定与事实收集",
-    path: "第二部分 → 准备环节 → 数据锚定",
-    desc: "用SBI模型准备反馈，收集具体事例，用事实说话而非模糊评价。",
-    url: ""
+  "prep": {
+    name: "面谈准备：带着证据进场",
+    path: "第三部分 → 环节一：准备",
+    desc: "不是提前十分钟翻表格，而是用SBI模型收集具体事例和数据，带着证据进场。",
+    kp: "反馈准备与SBI模型",
+    url: "https://dofn2w9arf.feishu.cn/docx/FJJZdVCRcoUKMoxId20cWZianmd#doxcn1PtchMyYr1owCY2IGYW2jc"
   },
-  "sec-2-2-1": {
-    name: "开场技巧",
-    path: "第二部分 → 对话环节 → 开场技巧",
+  "opening": {
+    name: "面谈开场：建立心理安全",
+    path: "第三部分 → 环节二：对话 → 开场技巧",
     desc: "用温和开场建立心理安全，让员工知道这是帮助成长而非追责审判。",
-    url: ""
+    kp: "面谈开场与心理安全建立",
+    url: "https://dofn2w9arf.feishu.cn/docx/FJJZdVCRcoUKMoxId20cWZianmd#doxcnY3QbQEBHUxRSLElMOaocye"
   },
-  "sec-2-2-2-1": {
-    name: "辩解时刻应对",
-    path: "第二部分 → 对话环节 → 三个难接时刻 → 辩解时刻",
+  "defense": {
+    name: "辩解时刻：先共情再引导",
+    path: "第五部分 → 场景二：面对员工辩解的应对",
     desc: "先共情接纳外部因素，再用「在你能控制的范围内」引导向内归因。",
-    url: ""
+    kp: "应对员工辩解与向内归因引导",
+    url: "https://dofn2w9arf.feishu.cn/docx/FJJZdVCRcoUKMoxId20cWZianmd#doxcnHeYET3fNJgaV3tfuZYsEWg"
   },
-  "sec-2-2-2-2": {
-    name: "情绪时刻应对",
-    path: "第二部分 → 对话环节 → 三个难接时刻 → 情绪时刻",
+  "emotion": {
+    name: "情绪时刻：先接情绪再处理事",
+    path: "第四部分 → 时刻二：员工情绪激动",
     desc: "先接情绪再处理事情，给情绪空间，等平复后再回到事实层面。",
-    url: ""
+    kp: "情绪处理与先接情绪再处理事情",
+    url: "https://dofn2w9arf.feishu.cn/docx/FJJZdVCRcoUKMoxId20cWZianmd#doxcnN82l8O2pfiIPL2jX07MgQh"
   },
-  "sec-2-2-2-3": {
-    name: "涨薪时刻应对",
-    path: "第二部分 → 对话环节 → 三个难接时刻 → 涨薪时刻",
-    desc: "给出清晰判断标准和努力路径，不画大饼、不直接拒绝、不推卸责任。",
-    url: ""
-  },
-  "sec-2-4-1": {
-    name: "24小时纪要与跟进",
-    path: "第二部分 → 跟进环节 → 24小时纪要",
-    desc: "面谈后24小时内发纪要，把口头共识变成书面承诺，持续跟进闭环。",
-    url: ""
-  },
-  "sec-3-1": {
-    name: "离职倾向识别与应对",
-    path: "第三部分 → 进阶场景 → 离职倾向应对",
-    desc: "保持开放好奇，探寻真实原因（推力还是拉力），不立刻反驳、不用钱留人。",
-    url: ""
-  },
-  "sec-3-2": {
-    name: "沉默员工沟通技巧",
-    path: "第三部分 → 进阶场景 → 沉默员工沟通",
+  "silence": {
+    name: "沉默员工：用非暴力沟通破冰",
+    path: "第四部分 → 时刻一：员工沉默",
     desc: "用观察+感受+请求的非暴力沟通，给安全空间，让员工愿意开口。",
-    url: ""
+    kp: "打破沉默与非暴力沟通",
+    url: "https://dofn2w9arf.feishu.cn/docx/FJJZdVCRcoUKMoxId20cWZianmd#doxcnPTnEYRhYbqvfT6dzima3Hh"
+  },
+  "salary": {
+    name: "涨薪提问：给标准给路径",
+    path: "第四部分 → 时刻三：员工直接问涨薪",
+    desc: "不回避不画饼，明确说出差距和标准，给出可执行的成长路径。",
+    kp: "涨薪提问应对与标准透明化",
+    url: "https://dofn2w9arf.feishu.cn/docx/FJJZdVCRcoUKMoxId20cWZianmd#doxcnjh9G8dklyAkSRWxD5urqUc"
+  },
+  "consensus": {
+    name: "共识环节：一起找到下一步",
+    path: "第三部分 → 环节三：共识",
+    desc: "不是员工说「我同意」就够了，而是一起讨论出具体行动、时间节点和衡量标准。",
+    kp: "共识达成与行动计划制定",
+    url: "https://dofn2w9arf.feishu.cn/docx/FJJZdVCRcoUKMoxId20cWZianmd#doxcnF8MKktoXfb3L7ETVHox8zc"
+  },
+  "followup": {
+    name: "跟进闭环：让改变真正发生",
+    path: "第六部分 → 面谈结束不是终点",
+    desc: "24小时内发纪要、两周内非正式反馈、下次面谈先回顾共识，三件事让效果翻倍。",
+    kp: "面谈后跟进与闭环管理",
+    url: "https://dofn2w9arf.feishu.cn/docx/FJJZdVCRcoUKMoxId20cWZianmd#doxcnn6LqYXd9dYlPkKNHupe4hg"
+  },
+  "pitfalls": {
+    name: "常见误区：创业公司的三个坑",
+    path: "第二部分 → 最容易踩的三个坑",
+    desc: "关系好就不好意思说真话、节奏快就走快速通道、没体系就想到什么说什么。",
+    kp: "绩效面谈常见误区识别",
+    url: "https://dofn2w9arf.feishu.cn/docx/FJJZdVCRcoUKMoxId20cWZianmd#doxcnYIucvZpPGYsWnrGsawktph"
+  },
+  "case": {
+    name: "案例演练：燕青的绩效面谈",
+    path: "第五部分 → 互动案例演练",
+    desc: "通过燕青的真实案例，演练开场、辩解应对、制定改进计划三个关键场景。",
+    kp: "实战案例与场景演练",
+    url: "https://dofn2w9arf.feishu.cn/docx/FJJZdVCRcoUKMoxId20cWZianmd#doxcngAWL6KR3sNxQLESR9U0BJf"
   }
 };
 
+// 10道题（按面谈流程顺序，含4道多选）
 const questions = [
   {
-    scene: "三季度考核结束，员工小张的业绩没达标。你把他叫到会议室，准备进行绩效面谈。",
-    question: "面谈开场，你会怎么说？",
+    type: "single",
+    scene: "季度考核结束，员工小李业绩没达标。你准备和他做绩效面谈。",
+    question: "关于面谈前的准备，以下哪种做法最专业？",
     options: [
-      "小张，你这季度考核结果是C，你自己看看吧，接下来打算怎么办？",
-      "小张，今天约你聊聊，主要是一起回顾下这季度的工作，目的不是追责，而是看看怎么帮你接下来成长得更快。",
-      "小张，这季度你业绩不太好啊，是不是最近状态有问题？跟我说说怎么回事。",
-      "小张，坐吧。咱们直接说正事，你这季度的表现我很不满意，你自己反思一下。",
-      "小张，这季度你整体还是很努力的，加班也不少，但业绩确实没达标，我们聊聊接下来怎么改进。"
+      "面谈前10分钟翻一下绩效考核表，大概看看数据就行",
+      "提前收集具体事例和数据，用SBI模型准备反馈，带着「证据」进场",
+      "凭印象和感觉谈，临场发挥更自然",
+      "只准备好要批评的点，其他到时候再说",
+      "把HR给的考核结果直接念给员工听就行"
     ],
-    correct: 1,
-    explanation: "📚 理论依据：哈佛商学院教授Amy Edmondson提出的「心理安全」理论指出，面谈开场最重要的是建立心理安全，让员工知道这是一次「帮助成长的对话」而非「追责审判」。\n\n✅ 正确答案 B：明确说明面谈目的是「一起回顾、帮助成长」，降低员工防御心理，员工才愿意敞开心扉。\n\n❌ 其他选项的问题：\n• A. 直接甩结果=审判式开场，员工立刻进入防御模式，后面说什么都听不进去\n• C. 上来就质疑状态=主观评判，「是不是状态有问题」是猜测而非事实，容易引发抵触\n• D. 直接表达不满=情绪先行，管理者先发泄情绪，对话还没开始就已经失败了\n• E. 先肯定努力再指出不足=看似温和，但「加班不少」会让员工觉得你用苦劳绑架他，而且没有明确说明面谈目的，员工还是会紧张",
-    knowledge_point: "面谈开场与心理安全建立",
-    article_section: "sec-2-2-1",
-    improvement_tip: "面谈开场先说明目的是「帮助成长」而非「追责」，用温和的语气建立心理安全，让员工愿意敞开心扉。"
+    correct: [1],
+    explanation: {
+      correct: "准备是面谈成功的基础。用SBI模型（Situation情境、Behavior行为、Impact影响）收集具体事例，用事实说话而非模糊评价，才能让员工心服口服。",
+      wrongReasons: [
+        { letter: "A", reason: "提前10分钟翻表格属于「走过场」式准备，没有具体事例支撑，面谈时容易变成空泛评价。" },
+        { letter: "C", reason: "凭印象谈容易出现「我觉得你最近状态不好」这类模糊评价，员工无法反驳也无法改进。" },
+        { letter: "D", reason: "只准备批评点会让面谈变成「批斗会」，缺少对优点的肯定和对改进方向的讨论。" },
+        { letter: "E", reason: "直接念考核结果是最糟糕的做法，面谈的价值在于沟通和赋能，而不是宣布结果。" }
+      ]
+    },
+    theory: "📚 理论依据：赋能型绩效面谈的「三维准备模型」——数据锚定、策略预判、场域准备。",
+    section: "prep",
+    tip: "面谈前至少花30分钟准备，列出3个具体正面事例和2-3个待改进事例，每个都用SBI模型写清楚。"
   },
   {
-    scene: "面谈中，你指出员工小李有两个项目交付延迟了。小李立刻辩解：「这不是我的问题，是产品需求一直变，研发资源也不够。」",
-    question: "面对员工的辩解，你会怎么回应？",
+    type: "single",
+    scene: "你把小李叫到会议室，面谈正式开始。",
+    question: "面谈开场，以下哪种说法最好？",
     options: [
-      "你不要总是找借口！别人怎么就能按时交付？问题肯定在你自己身上。",
-      "好好好，你说的都对，那我们不说这个了，说说下季度的计划吧。",
-      "你说的这些外部因素确实存在，我也理解。那我们换个角度，在你能控制的范围内，有没有哪些地方可以做得更好？",
-      "我理解资源紧张，但考核就是看结果，结果不好说什么都没用。",
-      "需求变更是客观情况，但你有没有提前跟产品和研发对齐过优先级？如果提前对齐，是不是可以减少延迟？"
+      "「你这季度考核结果是C，你自己看看吧」",
+      "「今天约你聊聊，主要是一起回顾下这季度的工作，目的是帮你接下来成长得更快」",
+      "「这季度你业绩不太好啊，是不是状态有问题？」",
+      "「咱们直接说正事，你这季度表现我很不满意」",
+      "「公司让我跟你做个面谈，走个流程，你别太在意」"
     ],
-    correct: 2,
-    explanation: "📚 理论依据：「情绪ABC理论」指出，沟通要先处理情绪（Affect），再处理行为（Behavior），最后处理认知（Cognition）。员工辩解时，先共情接纳，再引导向内归因。\n\n✅ 正确答案 C：先共情接纳（「确实存在，我也理解」），让员工觉得被理解，然后引导向内归因（「在你能控制的范围内」），员工才会真正反思。\n\n❌ 其他选项的问题：\n• A. 直接否定=员工觉得不被理解，更加抵触，面谈陷入僵局，「别人怎么就能」还会引发攀比和不满\n• B. 直接跳过=问题被掩盖，下次还会犯同样的错误，员工也不会真正改进\n• D. 只看结果=冰冷的评判，员工只会觉得委屈，不会真正改进，「结果不好说什么都没用」会让员工觉得你不讲理\n• E. 追问细节=看似在找原因，但「是不是可以减少延迟」带有指责意味，员工会觉得你在变相批评他，不如C的「在你能控制的范围内」更温和、更有引导性",
-    knowledge_point: "应对员工辩解与向内归因引导",
-    article_section: "sec-2-2-2-1",
-    improvement_tip: "面对员工辩解，先共情接纳外部因素的存在，再用「在你能控制的范围内」引导员工向内归因，不要直接否定或跳过问题。"
+    correct: [1],
+    explanation: {
+      correct: "好的开场要建立心理安全，让员工知道这是帮助成长而非追责审判。同时说明面谈目的和流程，降低员工的防御心理。",
+      wrongReasons: [
+        { letter: "A", reason: "直接甩结果会让员工立刻进入防御状态，后面的沟通很难深入。" },
+        { letter: "C", reason: "「是不是状态有问题」是主观猜测，容易让员工觉得被评判。" },
+        { letter: "D", reason: "开场就表达不满会让面谈变成「批斗会」，员工只会想怎么辩解而不是怎么改进。" },
+        { letter: "E", reason: "说「走个流程」会让员工觉得面谈不重要，也不尊重员工的时间和感受。" }
+      ]
+    },
+    theory: "📚 理论依据：心理安全（Psychological Safety）是有效沟通的前提。开场时明确「这是成长对话，不是追责对话」能显著降低员工防御。",
+    section: "opening",
+    tip: "开场三句话：①说明目的（一起回顾、帮助成长）②说明流程（先听你说，再一起讨论）③强调双向（你也可以提任何想法）。"
   },
   {
-    scene: "面谈进行到一半，员工小王突然情绪激动，声音提高：「我觉得这个考核根本不公平！我天天加班到半夜，结果就给我打这个分？」说着眼泪都快出来了。",
-    question: "这时候你会怎么做？",
+    type: "multi",
+    scene: "谈到业绩未达标的原因时，小李辩解：「这不是我的问题，是产品需求一直变，我根本没法稳定推进。」",
+    question: "以下哪些回应是合适的？（多选，少选多选都算错）",
     options: [
-      "你先冷静一下，我们是在讨论工作，不要带情绪。考核标准是公开透明的，怎么不公平了？",
-      "（递上纸巾）我能感觉到你对这件事很在意，也有些委屈。我们先不急着讨论结论，你愿意多说说你的感受吗？",
-      "加班不代表产出高，我们看的是结果不是过程。你要是觉得不公平，可以去找HR申诉。",
-      "好好好，我给你调高一点行了吧，别哭了，让人看到像什么样子。",
-      "我理解你的感受，但考核结果已经定了，现在改不了。我们还是聊聊接下来怎么改进吧。"
+      "「我理解需求变化确实会带来影响，那在你能控制的范围内，有哪些可以做得更好？」",
+      "「不要找借口，别人怎么没受影响？就你特殊？」",
+      "「需求变化是客观情况，我们先看看哪些是你可以主动推进的」",
+      "「行吧，那就算了，下次注意」",
+      "「你说的有道理，那你觉得下次遇到这种情况，怎么提前应对比较好？」"
     ],
-    correct: 1,
-    explanation: "📚 理论依据：丹尼尔·戈尔曼的「情商」理论指出，人在情绪上头时，大脑的杏仁核会接管，理性脑（前额叶）会暂时下线。这时候讲任何道理都听不进去。\n\n✅ 正确答案 B：先「接住情绪」（递纸巾、表达理解、给情绪空间），等情绪平复了，理性脑恢复了，再回到事实层面讨论。\n\n❌ 其他选项的问题：\n• A. 要求冷静=否定情绪，员工会觉得更不被理解，情绪可能更激动，「怎么不公平了」还会引发争论\n• C. 讲大道理=情绪没处理好，理性不会出场，说再多也听不进去，「去找HR申诉」等于把员工推走\n• D. 当场妥协=用让步换平静，只会换来得寸进尺，权威也没了，而且「别哭了让人看到」会让员工觉得羞耻\n• E. 先共情后拒绝=看似也在理解，但「已经定了改不了」太生硬，会让员工觉得你前面的共情都是装的，后面的「聊聊改进」也听不进去",
-    knowledge_point: "情绪处理与先接情绪再处理事情",
-    article_section: "sec-2-2-2-2",
-    improvement_tip: "员工情绪激动时，先接住情绪（递纸巾、表达理解、给情绪空间），等员工平复后再回到事实层面讨论，不要在情绪上头时讲道理。"
+    correct: [0, 2, 4],
+    explanation: {
+      correct: "面对员工辩解，正确的做法是：①先共情接纳外部因素（不否认客观困难）②用「在你能控制的范围内」引导向内归因③一起探讨未来的应对策略。核心是不纠结「谁的错」，而是聚焦「下次怎么做更好」。",
+      wrongReasons: [
+        { letter: "B", reason: "「不要找借口」会直接激怒员工，让员工觉得你根本不听他说话，后面只会更抗拒。" },
+        { letter: "D", reason: "「那就算了」是回避问题，既没有澄清责任，也没有找到改进方向，面谈等于白谈。" }
+      ]
+    },
+    theory: "📚 理论依据：向内归因引导法——先接纳外部因素（共情），再用「控制圈」理论引导员工关注自己能改变的部分，避免陷入「都是别人的错」的受害者心态。",
+    section: "defense",
+    tip: "面对辩解的万能公式：「我理解___确实有影响（共情）+ 那在你能控制的范围内，___（引导向内）+ 下次遇到这种情况，你觉得怎么提前应对比较好？（面向未来）」"
   },
   {
-    scene: "面谈接近尾声，你和员工小赵讨论完了改进方向。小赵突然问：「领导，那我什么时候能涨薪？我来公司都一年了。」",
-    question: "面对员工的涨薪提问，你会怎么回答？",
+    type: "single",
+    scene: "谈到一半，小李突然情绪激动，声音变大：「我觉得考核根本不公平！我天天加班到半夜，结果就给我个C？」说着眼泪都快出来了。",
+    question: "这时候你应该怎么做？",
     options: [
-      "好好干，机会有的是！只要你努力，涨薪还不是水到渠成的事？",
-      "这个季度公司整体没有调薪预算，你再等等吧，以后有机会再说。",
-      "关于涨薪，我可以跟你分享一下判断标准。目前你在跨部门协作方面已经达标，但在独立带项目方面还有差距。如果接下来两个季度你能在独立带项目方面拿出具体成果，我们就可以正式讨论涨薪的事。",
-      "涨薪不是我一个人能决定的，要看公司整体情况和你的表现，你问我我也不知道。",
-      "公司今年调薪名额有限，我尽量帮你争取，但不能保证。你先好好干，有消息我通知你。"
+      "立刻反驳：「考核是按标准来的，怎么不公平了？你加班不代表产出高啊」",
+      "先递杯水/纸巾，说「我理解你现在情绪比较激动，我们先缓一缓」，等平复后再回到事实层面",
+      "「你先冷静一下，我们继续说正事」",
+      "直接跳过这个话题，谈下一个点",
+      "「别哭别哭，是我话说重了，你这个C要不我再考虑考虑」"
     ],
-    correct: 2,
-    explanation: "📚 理论依据：「期望理论」（Expectancy Theory）指出，员工的积极性取决于三个因素：努力→绩效的期望、绩效→奖励的期望、奖励的效价。给出清晰的路径比模糊的「好好干」更能激发积极性。\n\n✅ 正确答案 C：正面回应，把焦点从「结果」拉到「路径」。给出清晰的判断标准和努力方向，让员工知道「怎么做就能得到」。\n\n❌ 其他选项的问题：\n• A. 画大饼=空头承诺，员工听多了就不信了，反而挫伤积极性，「水到渠成」太模糊\n• B. 直接拒绝=没有给出路径，员工不知道该往哪个方向努力，「再等等」会让员工觉得没奔头\n• D. 推卸责任=显得管理者没有担当，员工会觉得跟你混没奔头，「我也不知道」会让员工失望\n• E. 承诺争取=看似也在回应，但「尽量争取」是画大饼，没有给清晰标准，员工会觉得你在敷衍，「有消息通知你」会让员工一直等，反而焦虑",
-    knowledge_point: "涨薪提问应对与路径化反馈",
-    article_section: "sec-2-2-2-3",
-    improvement_tip: "面对员工涨薪提问，给出清晰的判断标准和努力路径，让员工知道「怎么做就能得到」，不要画大饼、不要直接拒绝、不要推卸责任。"
+    correct: [1],
+    explanation: {
+      correct: "情绪激动时，先接情绪再处理事情。给情绪空间（递水、纸巾、沉默陪伴），等员工平复后再回到事实层面。千万不要在情绪最高点讲道理，那时候什么都听不进去。",
+      wrongReasons: [
+        { letter: "A", reason: "情绪激动时反驳只会火上浇油，员工会觉得你根本不理解他的付出。" },
+        { letter: "C", reason: "「你先冷静」是无效指令，情绪不是说冷静就能冷静的，反而会让员工觉得被忽视。" },
+        { letter: "D", reason: "跳过问题是回避，员工带着情绪继续谈，后面什么都听不进去。" },
+        { letter: "E", reason: "因为员工哭就改考核结果是最糟糕的做法，既破坏了考核的严肃性，也给了员工「哭就能解决问题」的错误信号。" }
+      ]
+    },
+    theory: "📚 理论依据：情绪处理三步骤——①识别情绪（「我看到你现在很激动/委屈」）②接纳情绪（给空间，不评判）③等情绪平复后再处理事情。大脑的杏仁核在情绪激动时会劫持理性思考，必须等它「降温」才能有效沟通。",
+    section: "emotion",
+    tip: "员工哭了怎么办：①不要慌，不要说「别哭」②递纸巾、倒杯水③沉默陪伴1-2分钟④等哭声变小后说「我理解你觉得委屈，我们慢慢说」。"
   },
   {
-    scene: "面谈结束后，你回到工位，手头还有一堆事情要处理。关于这次面谈的后续跟进，你会怎么做？",
-    question: "面谈结束后，最重要的跟进动作是什么？",
+    type: "multi",
+    scene: "情绪平复后，小李又变得很沉默，你问什么他都只说「嗯」「好的」「没什么想法」。",
+    question: "以下哪些做法合适？（多选，少选多选都算错）",
     options: [
-      "面谈都谈完了，表格也签了，这件事就翻篇了，等下季度再说。",
-      "24小时内发一份简短的面谈纪要，把达成的共识和下一步行动整理出来，双方确认。",
-      "跟HR同步一下面谈结果，把考核表归档就行了。",
-      "找个机会跟其他管理者聊聊这个员工的情况，交换一下意见。",
-      "一周后跟员工约个简短的1对1，问问他改进计划执行得怎么样，有没有遇到困难。"
+      "「你是不是有什么顾虑？没关系，我们今天就是敞开聊，说什么都可以」",
+      "「你倒是说话啊，一直嗯是什么意思？对我有意见就直说」",
+      "用观察+感受的方式：「我注意到你今天话比较少，是有什么想法不方便说吗？」",
+      "给员工一些时间和空间，不要逼迫，沉默一会儿也没关系",
+      "「你不说话我就当你同意了啊，那我们就这么定了」"
     ],
-    correct: 1,
-    explanation: "📚 理论依据：「闭环管理」理论指出，任何沟通都需要「确认-执行-反馈」的闭环。面谈纪要的作用是把口头共识变成书面承诺，防止记忆偏差。\n\n✅ 正确答案 B：24小时内发面谈纪要有三个作用：①防止双方记忆偏差（口头说的和记的可能不一样）；②把口头共识变成书面承诺（写下来的东西更有约束力）；③让员工感受到你认真对待了这次谈话。\n\n❌ 其他选项的问题：\n• A. 谈完就翻篇=共识写在纸上然后就没有然后了，三个月后重复同样的问题，员工会觉得面谈只是走形式\n• C. 只归档=走流程思维，没有真正关注员工的成长和改变，归档是给公司看的，不是给员工看的\n• D. 跟别人聊=不是跟进的核心动作，核心是跟员工本人持续对齐，跟其他管理者聊是八卦，不是跟进\n• E. 一周后跟进=这个也很重要，但不是「最重要」的，24小时内发纪要是基础（先确认共识），一周后跟进是后续（再检查执行），没有纪要做基础，一周后跟进可能双方理解都不一样",
-    knowledge_point: "面谈后跟进与闭环管理",
-    article_section: "sec-2-4-1",
-    improvement_tip: "面谈结束后24小时内发一份简短纪要，把达成的共识和下一步行动整理出来双方确认，把口头共识变成书面承诺。"
+    correct: [0, 2, 3],
+    explanation: {
+      correct: "面对沉默员工，正确的做法是：①用非暴力沟通（观察+感受+请求）表达你的观察，而不是指责②给安全空间，明确说「说什么都可以」③给时间，不要逼迫，沉默一会儿没关系。核心是让员工觉得「安全」，他才愿意开口。",
+      wrongReasons: [
+        { letter: "B", reason: "「你倒是说话啊」是指责和逼迫，会让员工更封闭，反而更不愿意说。" },
+        { letter: "E", reason: "「不说话就当同意」是强迫，员工即使表面同意，心里也不认可，后面执行肯定打折扣。" }
+      ]
+    },
+    theory: "📚 理论依据：非暴力沟通（NVC）四要素——观察（事实，不带评判）、感受（你的情绪）、需要（背后的需求）、请求（具体的行动）。面对沉默员工，用「我观察到___，我感到___，我希望___」的句式，比「你怎么不说话」有效10倍。",
+    section: "silence",
+    tip: "破冰万能句：「我注意到你今天话比较少（观察），我有点担心是不是我哪里说得让你不舒服了（感受），如果你有任何想法，哪怕是不同意我的，都可以直接说，我保证不打断你（请求+安全承诺）。」"
   },
   {
-    scene: "你正在准备下周的绩效面谈。员工小周这季度表现不错，但有一个明显的短板——跨部门沟通不主动，导致好几次项目推进受阻。",
-    question: "在准备反馈内容时，以下哪种做法最有效？",
+    type: "single",
+    scene: "面谈快结束时，小李突然问：「那我什么时候能涨薪？我来公司都一年了。」",
+    question: "以下哪种回应最好？",
     options: [
-      "小周这季度整体不错，跨部门沟通嘛，也不是什么大问题，稍微提一下就行了，别打击他积极性。",
-      "直接说：你跨部门沟通太差了，好几次因为你不主动导致项目延期，下次必须改。",
-      "收集具体事例：比如X项目中，你没有提前跟设计部同步需求变更，导致设计返工延迟了3天。然后跟他讨论怎么改进。",
-      "让他自己先反思，我不说具体问题，看他能不能自己意识到跨部门沟通的问题。",
-      "先表扬他这季度的业绩，然后说「如果跨部门沟通能再主动一点就更好了」，点到为止。"
+      "「公司有公司的规定，你等着就行了，到时候自然会给你涨」",
+      "「涨薪不是我能决定的，你去问HR吧」",
+      "「你现在的水平距离涨薪标准还有差距，具体来说是___这两点。如果你能在接下来一个季度做到___，下次调薪我会优先考虑你」",
+      "「好好干，不会亏待你的，面包会有的」",
+      "「你现在业绩都没达标，还想涨薪？先把业绩搞上去再说吧」"
     ],
-    correct: 2,
-    explanation: "📚 理论依据：「SBI反馈模型」（Situation-Behavior-Impact）指出，有效的反馈应该包含三个要素：①具体情境（Situation）；②观察到的行为（Behavior）；③造成的影响（Impact）。\n\n✅ 正确答案 C：用具体事实和数据说话（「X项目中，没有提前同步，导致返工延迟3天」），而不是模糊评价（「沟通太差」）。事实越具体，员工越难否认，也越知道怎么改。\n\n❌ 其他选项的问题：\n• A. 轻轻带过=问题不会因为不说就消失，等到爆发时更难收拾，「别打击积极性」是管理者的逃避\n• B. 模糊批评=「沟通太差」是主观评价，员工会立刻反驳「我觉得我沟通挺好的」，没有具体事实支撑\n• D. 等他自己悟=员工可能根本意识不到问题，或者理解偏差，浪费时间，管理者的责任是给出明确反馈，不是让员工猜\n• E. 点到为止=看似也在反馈，但「再主动一点就更好了」太模糊，员工不知道具体怎么改、改到什么程度，等于没说",
-    knowledge_point: "反馈准备与SBI模型",
-    article_section: "sec-2-1-1",
-    improvement_tip: "准备反馈内容时收集具体事例，用SBI模型（情境Situation-行为Behavior-影响Impact）说话，事实越具体，员工越难否认，也越知道怎么改。"
+    correct: [2],
+    explanation: {
+      correct: "面对涨薪提问，正确的做法是：①不回避，正面回应②明确说出差距和标准（让员工知道「差在哪」）③给出可执行的成长路径和时间节点（让员工知道「怎么做就能涨」）。核心是把「能不能涨」变成「怎么做就能涨」。",
+      wrongReasons: [
+        { letter: "A", reason: "「你等着就行了」是敷衍，员工不知道标准和路径，只会觉得没盼头。" },
+        { letter: "B", reason: "「你去问HR」是甩锅，作为直属管理者，你有责任和员工讨论成长和薪酬。" },
+        { letter: "D", reason: "「好好干不会亏待你」是画饼，没有具体标准和时间，员工不会当真。" },
+        { letter: "E", reason: "「业绩没达标还想涨薪」是嘲讽，会打击员工积极性，也会让员工觉得你不尊重他的诉求。" }
+      ]
+    },
+    theory: "📚 理论依据：薪酬沟通的「标准透明化」原则——员工对薪酬的不满往往不是因为钱少，而是因为「不知道为什么少」「不知道怎么才能多」。把标准和路径说清楚，即使现在不涨，员工也会有方向感和动力。",
+    section: "salary",
+    tip: "涨薪提问回应公式：「感谢你坦诚问这个问题（接纳）+ 你现在的水平距离涨薪标准还有___差距（明确差距）+ 如果你能在___时间内做到___，下次调薪我会优先考虑你（给出路径）」。"
   },
   {
-    scene: "面谈进行到一半，员工小李突然说：「领导，其实我已经在考虑离职了，有个机会在接触。」你很意外，因为小李是团队的骨干。",
-    question: "这时候你会怎么回应？",
+    type: "single",
+    scene: "面谈进入共识环节，你和小李讨论接下来的改进计划。",
+    question: "关于达成共识，以下哪种说法正确？",
     options: [
-      "什么？你要离职？我平时对你不好吗？公司哪里对不起你了？你说说看！",
-      "哦，有好机会是好事啊。那你先去看看，要是不合适再回来，团队大门永远为你敞开。",
-      "谢谢你愿意跟我说这件事。能聊聊是什么让你开始考虑外面的机会吗？是这里有什么让你不满意的地方，还是外面的机会有什么特别吸引你的？",
-      "现在是绩效面谈时间，我们先不谈离职的事，把绩效谈完再说。你先回去想想，想好了我们再约时间聊。",
-      "你先别冲动，离职的事要慎重。这样，我给你涨薪10%，你再考虑考虑？"
+      "员工说「我同意」就够了，不用太细",
+      "需要一起讨论出具体的下一步行动、时间节点和衡量标准，双方确认",
+      "管理者直接告诉员工接下来怎么做就行，效率高",
+      "共识环节就是走个形式，面谈完了员工自己会去做的",
+      "只要员工点头了，就说明达成共识了"
     ],
-    correct: 2,
-    explanation: "📚 理论依据：「离职面谈」最佳实践指出，当员工提出离职时，最重要的是保持开放和好奇，而不是立刻反驳或挽留。了解真实原因（推力还是拉力）才能针对性回应。\n\n✅ 正确答案 C：先感谢员工的坦诚（「谢谢你愿意跟我说」），然后用开放式问题了解真实原因（「是什么让你开始考虑」），这样才能知道员工是因为「推力」（这里不满意）还是「拉力」（外面吸引），才能针对性地回应。即使最终留不住，了解真实原因也能帮助团队改进。\n\n❌ 其他选项的问题：\n• A. 情绪激动=员工会觉得被指责，反而更坚定离职的决心，「我对你不好吗」是道德绑架\n• B. 立刻放手=显得你不在乎员工，员工会觉得「原来我走不走你都无所谓」，反而心寒，而且没有了解真实原因就放弃，太草率\n• D. 回避问题=员工会觉得你不重视他的诉求，「先谈绩效」会让员工觉得你只关心工作不关心人，而且回避不会让问题消失，只会让员工更坚定离职\n• E. 用钱留人=看似在挽留，但「涨薪10%」是临时抱佛脚，员工会觉得你平时不关注他，要走了才用钱砸，而且如果员工离职的原因不是钱，涨薪也留不住，即使留住了，员工也会觉得「原来我提离职就能涨薪」，以后会用离职来要挟",
-    knowledge_point: "离职信号处理与真实原因探寻",
-    article_section: "sec-3-1",
-    improvement_tip: "员工提出离职时，保持开放和好奇，先感谢坦诚，再用开放式问题了解真实原因（是这里的「推力」还是外面的「拉力」），不要立刻反驳、不要回避、不要用钱留人。"
+    correct: [1],
+    explanation: {
+      correct: "真正的共识不是「我同意你说的」，而是一起找到下一步。需要明确：①具体做什么（行动）②什么时候完成（时间节点）③怎么衡量做到了（衡量标准）④遇到困难找谁支持（资源支持）。越具体，后面执行的可能性越高。",
+      wrongReasons: [
+        { letter: "A", reason: "「我同意」是模糊共识，员工可能只是口头应付，回去就忘了，或者理解的和你不一样。" },
+        { letter: "C", reason: "管理者直接下命令不是共识，员工没有参与感，执行时也不会有主人翁意识。" },
+        { letter: "D", reason: "认为共识是走形式是对面谈价值的误解，没有共识的面谈等于白谈。" },
+        { letter: "E", reason: "点头可能是敷衍、可能是没听懂、可能是不敢反对，不等于真正的共识。" }
+      ]
+    },
+    theory: "📚 理论依据：SMART原则在共识环节的应用——Specific具体的、Measurable可衡量的、Achievable可实现的、Relevant相关的、Time-bound有时限的。共识越符合SMART，后面执行的成功率越高。",
+    section: "consensus",
+    tip: "共识确认四问：①「我们刚才说的下一步，你理解的是___，对吗？」（确认理解一致）②「这个你预计什么时候能完成？」（确认时间）③「做到什么程度算完成了？」（确认标准）④「过程中如果遇到困难，你会找谁？」（确认支持）"
   },
   {
-    scene: "面谈中，你问员工对考核结果有什么想法，员工只是低着头说「嗯」「好的」「没什么想法」，问什么都只回答一两个字，气氛很尴尬。",
-    question: "这时候你会怎么打破僵局？",
+    type: "multi",
+    scene: "面谈结束了，小李走出会议室。",
+    question: "面谈结束后，以下哪些做法是正确的？（多选，少选多选都算错）",
     options: [
-      "你倒是说话啊！问你什么都嗯啊的，这面谈还怎么谈？你是不是对结果有意见？有意见就说！",
-      "那行，既然你没什么想法，那我们就签个字吧，面谈就到这里，你回去好好干。",
-      "我注意到你今天话比较少，是不是这个结果让你有些意外或者不舒服？没关系，你可以慢慢说，我今天时间很充裕，我们可以多聊聊。",
-      "你不说话我就当你默认了啊。那我们继续下一个话题，说说下季度的计划。",
-      "（沉默一会儿，然后说）我知道这个结果可能不太好接受。我刚来公司的时候，第一次拿C也难受了好几天。后来我发现，难受没用，关键是找到改进的方向。你呢，你觉得最需要改进的是什么？"
+      "24小时内发一份面谈纪要，双方确认内容",
+      "谈完就翻篇，等下次考核再说",
+      "两周内做一次非正式反馈，看看进展，有问题及时调整",
+      "下一次面谈时，先回顾上一次的共识，检查完成情况",
+      "只在员工出问题时才跟进，没问题就不用管"
     ],
-    correct: 2,
-    explanation: "📚 理论依据：「非暴力沟通」理论指出，当对方沉默时，不要逼对方说话，而是先「观察」（我注意到…），然后「感受」（是不是…），最后「请求」（可以多聊聊吗）。\n\n✅ 正确答案 C：没有指责，而是表达观察和理解（「我注意到你今天话比较少，是不是有些意外或者不舒服」），给员工安全的空间，让员工愿意开口。「我今天时间很充裕」传递了「我愿意花时间听你说」的信号，降低了员工的防御心理。\n\n❌ 其他选项的问题：\n• A. 指责逼迫=员工会更紧张，更不敢说话，「你是不是有意见」是在质问，会让员工更加防御\n• B. 草草结束=问题没有解决，员工带着情绪离开，面谈等于白谈，而且员工会觉得你不关心他的真实想法\n• D. 默认继续=员工的沉默不代表同意，可能是敢怒不敢言，「我就当你默认了」是管理者的逃避，后续可能会爆发更大的问题\n• E. 自我暴露+反问=看似也在共情，但「我刚来的时候」是在讲自己的故事，可能让员工觉得你在说教（「你看我当年也这样，你也应该这样」），而且「最需要改进的是什么」又把问题抛回给员工，员工可能还是不知道怎么回答",
-    knowledge_point: "打破沉默与非暴力沟通",
-    article_section: "sec-3-2",
-    improvement_tip: "员工沉默不语时，不要逼迫或指责，用「观察+感受+请求」的方式表达理解，给员工安全的空间和充足的时间，让员工愿意开口。"
+    correct: [0, 2, 3],
+    explanation: {
+      correct: "面谈结束不是终点，三件事让效果翻倍：①24小时内发纪要（把口头共识变成书面承诺）②两周内非正式反馈（及时调整，避免跑偏）③下次面谈先回顾（形成闭环）。跟进是面谈价值的真正实现，没有跟进的面谈等于白谈。",
+      wrongReasons: [
+        { letter: "B", reason: "「谈完就翻篇」是最常见的错误，口头共识没有书面记录，两周后双方可能都忘了当时说的是什么。" },
+        { letter: "E", reason: "「只在出问题时才跟进」是救火式管理，好的管理是防火式——定期跟进，在问题变大之前就发现和解决。" }
+      ]
+    },
+    theory: "📚 理论依据：PDCA循环（Plan计划-Do执行-Check检查-Act改进）在绩效管理中的应用。面谈是Plan和Check，跟进是Do和Act，形成完整闭环才能让改变真正发生。",
+    section: "followup",
+    tip: "跟进三件事的时间节点：①24小时内：发纪要（趁热打铁，记忆最清晰）②2周内：非正式反馈（员工执行了一段时间，容易发现问题）③下次面谈前：回顾上次共识（检查完成情况，作为下次面谈的起点）"
+  },
+  {
+    type: "multi",
+    scene: "你是创业公司的管理者，团队都是一起打拼过来的「兄弟」。",
+    question: "创业公司做绩效面谈，最容易踩哪些坑？（多选，少选多选都算错）",
+    options: [
+      "因为关系好，就「不好意思说真话」，怕伤感情",
+      "因为节奏快，就「面谈也走快速通道」，10分钟搞定",
+      "因为没有体系，就「想到什么说什么」，没有结构",
+      "提前准备充分，用数据和事例说话",
+      "只谈问题和不足，不谈优点和成长，觉得「夸了会飘」"
+    ],
+    correct: [0, 1, 2, 4],
+    explanation: {
+      correct: "创业公司做绩效面谈最容易踩的三个坑：①关系好就不好意思说真话（「都是兄弟，说重了伤感情」）②节奏快就走快速通道（「太忙了，10分钟搞定」）③没体系就想到什么说什么（「没有标准，凭感觉谈」）。另外，只谈问题不谈优点也是常见误区，会让员工觉得面谈就是「批斗会」。",
+      wrongReasons: [
+        { letter: "D", reason: "「提前准备充分，用数据说话」是正确的做法，不是坑。" }
+      ]
+    },
+    theory: "📚 理论依据：创业公司绩效管理的「非正式陷阱」——早期靠感情和默契管理，规模变大后需要制度化，但管理者容易停留在「兄弟式管理」的舒适区，不愿意做正式的绩效沟通。结果就是「你不说我不说，问题越积越多，最后爆发时已经晚了」。",
+    section: "pitfalls",
+    tip: "创业公司管理者的心态转变：①「说真话不是伤感情，是对兄弟负责」②「10分钟面谈是浪费时间，不如花1小时谈透，后面省10小时」③「没有体系就建体系，从最简单的SBI模型开始」。"
+  },
+  {
+    type: "single",
+    scene: "面谈中，小李突然提到：「其实最近有个机会在接触，对方给的薪资挺高的，我还在考虑。」",
+    question: "这时候你应该怎么做？",
+    options: [
+      "立刻反驳：「外面有什么好的，你别犯傻，创业公司哪有咱们这么自由」",
+      "保持开放好奇：「感谢你坦诚跟我说，能聊聊是什么吸引你吗？是薪资、成长空间，还是其他原因？」",
+      "立刻承诺：「你别走，我马上给你涨薪，你说多少吧」",
+      "假装没听到，继续谈绩效，当作什么都没发生",
+      "「那你既然想走了，我们也没什么好谈的了，面谈就到这吧」"
+    ],
+    correct: [1],
+    explanation: {
+      correct: "员工提离职信号时，正确的做法是：①保持开放好奇，不立刻反驳②探寻真实原因（是「推力」——这里不好，还是「拉力」——外面太好）③不用钱留人（用钱留住的人，下次有人出更高价还是会走）④如果确实留不住，好聚好散，保持关系。核心是「了解真实原因」，而不是「立刻阻止」。",
+      wrongReasons: [
+        { letter: "A", reason: "立刻反驳会让员工觉得你根本不想听他的真实想法，后面就不会再说了。" },
+        { letter: "C", reason: "用钱留人是最糟糕的做法，一是破坏薪酬体系，二是用钱留住的人忠诚度很低，三是员工会觉得「原来提离职就能涨薪」。" },
+        { letter: "D", reason: "假装没听到是回避，员工提离职是重要信号，不处理可能就真的走了。" },
+        { letter: "E", reason: "「想走就没什么好谈的」是赌气，既了解不到真实原因，也破坏了关系，以后连朋友都做不成。" }
+      ]
+    },
+    theory: "📚 理论依据：离职面谈的「推力-拉力」模型——员工离职要么是「推力」（这里的问题：薪资低、没成长、不开心），要么是「拉力」（外面的机会：薪资高、平台大、title好）。先搞清楚是哪种，再决定怎么应对。推力问题可以解决，拉力问题很难竞争，但了解清楚至少能知道自己哪里需要改进。",
+    section: "case",
+    tip: "离职信号应对四步：①感谢坦诚（「感谢你愿意跟我说」）②探寻原因（「能聊聊是什么吸引你吗？」）③不急于承诺（「我需要想想，我们可以改天再聊」）④保持关系（「不管你最后怎么决定，我们都是朋友」）。"
   }
 ];
 
+// 全局变量
 let currentQ = 0;
 let score = 0;
-let answered = false;
 let wrongAnswers = [];
+let userAnswers = [];
+let selectedOptions = []; // 当前题选中的选项（多选题用）
+let answered = false; // 当前题是否已作答
 
+// 渲染题目
 function renderQuestion() {
   const q = questions[currentQ];
-  const area = document.getElementById('quizArea');
+  const container = document.getElementById('question-container');
   const progress = ((currentQ) / questions.length) * 100;
-  document.getElementById('progressFill').style.width = progress + '%';
-  
-  let optionsHTML = q.options.map((opt, i) => 
-    `<button class="option-btn" onclick="selectOption(${i})">
-      <span class="option-label">${String.fromCharCode(65+i)}</span>
-      <span>${opt}</span>
-    </button>`
-  ).join('');
-  
-  area.innerHTML = `
-    <div class="question-card">
-      <span class="question-num">第 ${currentQ + 1} / ${questions.length} 题</span>
-      <div class="question-scene">🎬 <b>场景：</b>${q.scene}</div>
-      <div class="question-text">${q.question}</div>
-      <div class="options" id="optionsArea">${optionsHTML}</div>
-      <div id="explanationArea"></div>
-    </div>
+  document.getElementById('progress-fill').style.width = progress + '%';
+
+  const typeLabel = q.type === 'multi' ? '<span class="question-type">多选题</span>' : '<span class="question-type" style="background:#e3f2fd;color:#1565c0;">单选题</span>';
+
+  let optionsHTML = '';
+  q.options.forEach((opt, i) => {
+    const letter = String.fromCharCode(65 + i);
+    optionsHTML += `
+      <div class="option" id="opt-${i}" onclick="toggleOption(${i})">
+        <span class="option-letter">${letter}.</span>
+        <span>${opt}</span>
+      </div>
+    `;
+  });
+
+  let buttonHTML = '';
+  if (q.type === 'multi') {
+    buttonHTML = `<button class="btn btn-confirm" id="confirm-btn" onclick="confirmAnswer()" disabled>确认答案</button>`;
+  }
+
+  container.innerHTML = `
+    <div class="question-number">第 ${currentQ + 1} / ${questions.length} 题 ${typeLabel}</div>
+    <div class="question-scene">🎬 场景：${q.scene}</div>
+    <div class="question-text">${q.question}</div>
+    <div class="options">${optionsHTML}</div>
+    <div class="explanation" id="explanation"></div>
+    ${buttonHTML}
+    <button class="btn btn-primary" id="next-btn" onclick="nextQuestion()" style="display:none;">${currentQ === questions.length - 1 ? '查看结果 🎯' : '下一题 →'}</button>
   `;
+
+  selectedOptions = [];
   answered = false;
 }
 
-function selectOption(index) {
+// 切换选项（多选题和单选题通用）
+function toggleOption(index) {
   if (answered) return;
-  answered = true;
-  
   const q = questions[currentQ];
-  const buttons = document.querySelectorAll('.option-btn');
-  buttons.forEach((btn, i) => {
-    btn.classList.add('disabled');
-    if (i === q.correct) btn.classList.add('correct');
-    if (i === index && index !== q.correct) btn.classList.add('wrong');
+
+  if (q.type === 'single') {
+    // 单选题：直接选中并显示答案
+    selectedOptions = [index];
+    document.querySelectorAll('.option').forEach((el, i) => {
+      el.classList.remove('selected');
+      if (i === index) el.classList.add('selected');
+    });
+    showAnswer();
+  } else {
+    // 多选题：切换选中状态
+    const idx = selectedOptions.indexOf(index);
+    if (idx > -1) {
+      selectedOptions.splice(idx, 1);
+      document.getElementById('opt-' + index).classList.remove('selected');
+    } else {
+      selectedOptions.push(index);
+      document.getElementById('opt-' + index).classList.add('selected');
+    }
+    // 更新确认按钮状态
+    const confirmBtn = document.getElementById('confirm-btn');
+    if (confirmBtn) {
+      confirmBtn.disabled = selectedOptions.length === 0;
+    }
+  }
+}
+
+// 确认答案（多选题用）
+function confirmAnswer() {
+  if (selectedOptions.length === 0) return;
+  showAnswer();
+}
+
+// 显示答案和解析
+function showAnswer() {
+  answered = true;
+  const q = questions[currentQ];
+  const isCorrect = JSON.stringify(selectedOptions.sort()) === JSON.stringify(q.correct.sort());
+
+  // 标记选项
+  document.querySelectorAll('.option').forEach((el, i) => {
+    el.classList.add('disabled');
+    el.classList.remove('selected');
+    if (q.correct.includes(i)) {
+      el.classList.add('correct');
+    } else if (selectedOptions.includes(i)) {
+      el.classList.add('wrong');
+    }
   });
-  
-  const isCorrect = index === q.correct;
-  if (isCorrect) score++;
-  else wrongAnswers.push({ questionIndex: currentQ, userAnswer: index });
-  
-  const expArea = document.getElementById('explanationArea');
-  const expClass = isCorrect ? 'correct-exp' : 'wrong-exp';
-  const expTitle = isCorrect ? '🎉 回答正确！' : '💡 回答错误，来看解析：';
-  const userAnswer = String.fromCharCode(65 + index);
-  const correctAnswer = String.fromCharCode(65 + q.correct);
-  
-  expArea.innerHTML = `
-    <div class="explanation ${expClass}">
-      <div class="explanation-title">${expTitle}</div>
-      <div style="margin-bottom: 12px; padding: 10px 14px; background: rgba(255,255,255,0.7); border-radius: 8px; font-size: 14px; line-height: 1.8;">
-        <b>你的选择：</b><span style="font-size: 18px; font-weight: 700; ${isCorrect ? 'color: #2e7d32;' : 'color: #c62828;'}">${userAnswer}</span> ${isCorrect ? '✅' : '❌'}
-        ${!isCorrect ? `&nbsp;&nbsp;|&nbsp;&nbsp;<b>正确答案：</b><span style="font-size: 18px; font-weight: 700; color: #2e7d32;">${correctAnswer}</span> ✅` : ''}
-      </div>
-      <div style="white-space: pre-line;">${q.explanation}</div>
-      <div class="clearfix">
-        ${currentQ < questions.length - 1 
-          ? '<button class="next-btn" onclick="nextQuestion()">下一题 →</button>' 
-          : '<button class="next-btn" onclick="showResult()">查看结果 🎯</button>'}
-      </div>
+
+  // 记录答题结果
+  userAnswers.push([...selectedOptions]);
+  if (isCorrect) {
+    score++;
+  } else {
+    wrongAnswers.push({
+      questionIndex: currentQ,
+      userAnswer: [...selectedOptions],
+      correctAnswer: [...q.correct]
+    });
+  }
+
+  // 显示解析
+  const explanation = document.getElementById('explanation');
+  const correctLetters = q.correct.map(i => String.fromCharCode(65 + i)).join('、');
+  const userLetters = selectedOptions.map(i => String.fromCharCode(65 + i)).join('、');
+
+  let wrongReasonsHTML = '';
+  if (q.explanation.wrongReasons && q.explanation.wrongReasons.length > 0) {
+    wrongReasonsHTML = '<div style="margin-top:10px;"><strong>其他选项为什么错：</strong>';
+    q.explanation.wrongReasons.forEach(wr => {
+      wrongReasonsHTML += `<div class="wrong-reason"><strong>${wr.letter}.</strong> ${wr.reason}</div>`;
+    });
+    wrongReasonsHTML += '</div>';
+  }
+
+  explanation.className = 'explanation show ' + (isCorrect ? 'correct-exp' : 'wrong-exp');
+  explanation.innerHTML = `
+    <div class="explanation-title">${isCorrect ? '🎉 回答正确！' : '💡 回答错误，来看解析：'}</div>
+    <div class="explanation-content">
+      <p><strong>正确答案：${correctLetters}</strong>${!isCorrect ? ` | 你的答案：${userLetters}` : ''}</p>
+      <p>${q.explanation.correct}</p>
+      ${wrongReasonsHTML}
+      <div class="theory">${q.theory}</div>
     </div>
   `;
+
+  // 隐藏确认按钮，显示下一题按钮
+  const confirmBtn = document.getElementById('confirm-btn');
+  if (confirmBtn) confirmBtn.style.display = 'none';
+  document.getElementById('next-btn').style.display = 'block';
 }
 
+// 下一题
 function nextQuestion() {
-  currentQ++;
-  renderQuestion();
+  if (currentQ < questions.length - 1) {
+    currentQ++;
+    renderQuestion();
+  } else {
+    showResult();
+  }
 }
 
+// 显示结果
 function showResult() {
-  document.getElementById('progressFill').style.width = '100%';
-  const area = document.getElementById('quizArea');
-  const percent = Math.round((score / questions.length) * 100);
-  
+  document.getElementById('quiz-area').style.display = 'none';
+  const resultArea = document.getElementById('result-area');
+  resultArea.style.display = 'block';
+
+  const percentage = Math.round((score / questions.length) * 100);
   let level, desc;
-  if (percent >= 90) {
-    level = "🏆 面谈大师";
-    desc = "太棒了！你已经掌握了绩效面谈的核心精髓——先建立安全、再呈现事实、先处理情绪、再处理事情。你能够用具体数据说话，善于引导员工向内归因，并且懂得后续跟进的重要性。继续保持，你就是团队中最受欢迎的管理者！";
-  } else if (percent >= 70) {
-    level = "👍 熟练操作者";
-    desc = "不错！你已经掌握了绩效面谈的大部分技巧，能够应对常见场景。但在一些细节上还有提升空间。建议重点复习下方列出的薄弱环节，针对性地提升，你的面谈能力还能再上一个台阶！";
-  } else if (percent >= 50) {
-    level = "📚 进阶学习者";
-    desc = "你对绩效面谈有一定的了解，但还存在一些常见误区。别担心，这是大多数管理者的必经阶段。建议你认真阅读下方列出的薄弱环节和推荐章节，带着「先听后说、先平后激」的原则去实践，很快就能看到进步！";
+
+  if (score === questions.length) {
+    level = '🌟🌟🌟 完美通关！面谈大师';
+    desc = '太厉害了！10道题全部答对，你已经是绩效面谈的高手！这些场景你都能从容应对，继续保持，也可以把你的经验分享给团队的其他管理者。下面是文章的完整章节，你可以根据兴趣选读，也可以温故知新。';
+  } else if (score >= 8) {
+    level = '🌟🌟 优秀！面谈达人';
+    desc = '非常不错！你已经掌握了绩效面谈的核心方法，大部分场景都能应对自如。还有少数场景可以再精进一下，下面是针对你的薄弱环节的提升建议和推荐阅读。';
+  } else if (score >= 5) {
+    level = '🌟 良好！进阶中';
+    desc = '还不错！你对绩效面谈有基本的了解，但在一些关键场景上还有提升空间。别担心，绩效面谈是可以练出来的，下面是针对你的提升建议和推荐阅读，认真看完一定会有收获。';
   } else {
-    level = "🌱 新手入门";
-    desc = "看起来你在绩效面谈方面还有比较大的提升空间。但这完全可以通过学习和练习来改善！建议你从下方列出的薄弱环节开始，逐一攻克，每一次面谈都是一次练习的机会，加油！";
+    level = '💪 加油！新手起步';
+    desc = '没关系，绩效面谈是一门可以学习的技能，大部分管理者刚开始都会踩坑。重要的是意识到问题并开始学习。下面是针对你的提升建议和推荐阅读，建议从头开始认真看，一定会有很大提升。';
   }
-  
-  // 错题汇总HTML
-  let wrongHTML = '';
+
+  // 个性化提升建议（根据错题）
+  let tipsHTML = '';
   if (wrongAnswers.length > 0) {
-    wrongHTML = `
-      <div style="margin-top: 28px; text-align: left;">
-        <div style="font-size: 18px; font-weight: 700; color: #c62828; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #ffcdd2;">📝 你的薄弱环节（共 ${wrongAnswers.length} 题答错）</div>
+    const uniqueTips = [...new Set(wrongAnswers.map(wa => questions[wa.questionIndex].tip))];
+    tipsHTML = `
+      <div class="section-title">💡 针对你的个性化提升建议</div>
+      <ul class="tips-list">
+        ${uniqueTips.map(tip => `<li>${tip}</li>`).join('')}
+      </ul>
     `;
-    
-    wrongAnswers.forEach((item, i) => {
-      const q = questions[item.questionIndex];
-      const userAns = String.fromCharCode(65 + item.userAnswer);
-      const correctAns = String.fromCharCode(65 + q.correct);
-      const sceneShort = q.scene.length > 50 ? q.scene.substring(0, 50) + '...' : q.scene;
-      const section = articleSections[q.article_section] || { path: q.article_section, name: q.article_section, desc: '' };
-      
-      wrongHTML += `
-        <div style="background: #fff8f8; border: 1px solid #ffcdd2; border-radius: 12px; padding: 18px; margin-bottom: 16px;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-            <span style="background: #c62828; color: #fff; padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 600;">第 ${item.questionIndex + 1} 题</span>
-            <span style="font-size: 13px; color: #666;">
-              你的答案：<b style="color: #c62828; font-size: 16px;">${userAns}</b> ❌
-              &nbsp;|&nbsp;
-              正确答案：<b style="color: #2e7d32; font-size: 16px;">${correctAns}</b> ✅
-            </span>
-          </div>
-          <div style="font-size: 13px; color: #888; margin-bottom: 10px; line-height: 1.6;">🎬 ${sceneShort}</div>
-          <div style="background: #fff; border-left: 3px solid #ff9800; padding: 10px 14px; border-radius: 0 6px 6px 0; margin-bottom: 10px;">
-            <div style="font-weight: 600; color: #e65100; margin-bottom: 4px;">💡 知识点：${q.knowledge_point}</div>
-            <div style="font-size: 13px; color: #555; line-height: 1.7;">${q.improvement_tip}</div>
-          </div>
-          <div style="background: #f0f7ff; border-left: 3px solid #2196f3; padding: 10px 14px; border-radius: 0 6px 6px 0; font-size: 13px; color: #1565c0; line-height: 1.6;">
-            📖 <b>推荐阅读：</b>${section.path}
-          </div>
-        </div>
-      `;
-    });
-    
-    // 汇总建议
-    const knowledgePoints = wrongAnswers.map(item => questions[item.questionIndex].knowledge_point);
-    const uniquePoints = [...new Set(knowledgePoints)];
-    wrongHTML += `
-      <div style="background: linear-gradient(135deg, #fff3e0, #ffe0b2); border-radius: 12px; padding: 18px; margin-top: 20px;">
-        <div style="font-weight: 700; color: #e65100; margin-bottom: 10px; font-size: 16px;">🎯 针对你的个性化提升建议</div>
-        <div style="font-size: 14px; color: #5d4037; line-height: 1.8;">
-          你在以下 <b>${uniquePoints.length}</b> 个知识点上还需要加强：<br>
-          ${uniquePoints.map((p, i) => `${i + 1}. ${p}`).join('<br>')}
-        </div>
-      </div>
-    `;
-    
-    // 个性化阅读清单
-    const sectionIds = [...new Set(wrongAnswers.map(item => questions[item.questionIndex].article_section))];
-    wrongHTML += `
-      <div style="margin-top: 24px;">
-        <div style="font-size: 18px; font-weight: 700; color: #1565c0; margin-bottom: 8px; padding-bottom: 8px; border-bottom: 2px solid #bbdefb;">📚 你的个性化阅读清单（共 ${sectionIds.length} 个章节）</div>
-        <div style="font-size: 13px; color: #666; margin-bottom: 16px;">根据你的错题，为你精选了以下章节，点击卡片即可跳转至文章对应部分深入阅读：</div>
-    `;
-    
-    sectionIds.forEach((secId, idx) => {
-      const sec = articleSections[secId];
-      if (!sec) return;
-      const relatedPoints = wrongAnswers
-        .filter(item => questions[item.questionIndex].article_section === secId)
-        .map(item => questions[item.questionIndex].knowledge_point);
-      
-      const isClickable = sec.url && sec.url.length > 0;
-      
-      wrongHTML += `
-        <div style="background: linear-gradient(135deg, #f0f7ff, #e3f2fd); border: 1px solid #bbdefb; border-radius: 12px; padding: 16px; margin-bottom: 12px; ${isClickable ? 'cursor: pointer;' : ''}" ${isClickable ? `onclick="window.open('${sec.url}', '_blank')"` : ''}>
-          <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-            <div style="flex: 1;">
-              <div style="font-weight: 700; color: #1565c0; font-size: 15px; margin-bottom: 6px;">${idx + 1}. ${sec.name}</div>
-              <div style="font-size: 12px; color: #1976d2; margin-bottom: 8px;">📍 ${sec.path}</div>
-              <div style="font-size: 13px; color: #455a64; line-height: 1.6;">${sec.desc}</div>
-              <div style="font-size: 12px; color: #78909c; margin-top: 8px;">🔗 对应知识点：${relatedPoints.join('、')}</div>
-            </div>
-            <div style="margin-left: 12px; color: #2196f3; font-size: 28px; display: flex; align-items: center;">${isClickable ? '→' : '📖'}</div>
-          </div>
-        </div>
-      `;
-    });
-    
-    wrongHTML += '</div>';
-    wrongHTML += '</div>';
   } else {
-    // 全对的特别表扬
-    wrongHTML = `
-      <div style="margin-top: 24px; background: linear-gradient(135deg, #e8f5e9, #c8e6c9); border-radius: 12px; padding: 20px; text-align: center;">
-        <div style="font-size: 40px; margin-bottom: 10px;">🌟🌟🌟</div>
-        <div style="font-weight: 700; color: #2e7d32; font-size: 18px; margin-bottom: 8px;">完美通关！全部答对！</div>
-        <div style="font-size: 14px; color: #388e3c; line-height: 1.7;">
-          你已经完全掌握了绩效面谈的核心技巧，从开场、应对辩解、情绪处理到后续跟进，都能做出最专业的选择。<br>
-          建议你把这些技巧分享给团队的其他管理者，帮助大家一起提升！
-        </div>
-      </div>
+    tipsHTML = `
+      <div class="section-title">💡 给面谈大师的进阶建议</div>
+      <ul class="tips-list">
+        <li>把你的面谈经验整理成案例，分享给团队其他管理者，教学相长</li>
+        <li>尝试在面谈中使用更多开放式问题，引导员工自己找到答案，而不是你直接给建议</li>
+        <li>关注面谈后的跟进执行率，这才是面谈价值的真正体现</li>
+        <li>可以尝试做「面谈复盘」，每次面谈后记录哪些做得好、哪些可以改进，持续迭代</li>
+      </ul>
     `;
   }
-  
-  area.innerHTML = `
+
+  // 个性化阅读清单（根据错题推荐；全对时显示全部）
+  let readingHTML = '';
+  let recommendedSections;
+  if (wrongAnswers.length > 0) {
+    // 根据错题推荐对应章节
+    const sectionKeys = [...new Set(wrongAnswers.map(wa => questions[wa.questionIndex].section))];
+    recommendedSections = sectionKeys;
+  } else {
+    // 全对时显示全部章节
+    recommendedSections = Object.keys(articleSections);
+  }
+
+  readingHTML = `
+    <div class="section-title">📚 ${wrongAnswers.length > 0 ? '你的个性化阅读清单（共 ' + recommendedSections.length + ' 个章节）' : '完整阅读清单（共 ' + recommendedSections.length + ' 个章节，按兴趣选读）'}</div>
+    <div style="font-size:13px;color:#888;margin-bottom:12px;text-align:left;">${wrongAnswers.length > 0 ? '根据你的错题，为你精选了以下章节，点击卡片即可跳转至文章对应部分深入阅读：' : '你已经全部答对，可以根据兴趣选读，也可以温故知新。点击卡片即可跳转至文章对应部分：'}</div>
+    <div class="reading-list">
+      ${recommendedSections.map((key, idx) => {
+        const sec = articleSections[key];
+        return `
+          <a class="reading-card" href="${sec.url}" target="_blank">
+            <div class="reading-card-title">${idx + 1}. ${sec.name}</div>
+            <div class="reading-card-path">📍 ${sec.path}</div>
+            <div class="reading-card-desc">${sec.desc}</div>
+            <div class="reading-card-kp">🔗 对应知识点：${sec.kp}</div>
+          </a>
+        `;
+      }).join('')}
+    </div>
+  `;
+
+  resultArea.innerHTML = `
     <div class="result-card">
       <div class="score-circle">
         <div class="score-num">${score}</div>
@@ -653,21 +845,30 @@ function showResult() {
       </div>
       <div class="result-level">${level}</div>
       <div class="result-desc">${desc}</div>
-      ${wrongHTML}
-      <div style="margin-top: 24px;">
-        <button class="restart-btn" onclick="restart()">🔄 再测一次</button>
-      </div>
+      ${tipsHTML}
+      ${readingHTML}
+      <button class="btn restart-btn" onclick="restart()">🔄 再测一次</button>
     </div>
   `;
+
+  // 滚动到顶部
+  window.scrollTo(0, 0);
 }
 
+// 重新开始
 function restart() {
   currentQ = 0;
   score = 0;
   wrongAnswers = [];
+  userAnswers = [];
+  selectedOptions = [];
+  answered = false;
+  document.getElementById('result-area').style.display = 'none';
+  document.getElementById('quiz-area').style.display = 'block';
   renderQuestion();
 }
 
+// 初始化
 renderQuestion();
 </script>
 </body>
