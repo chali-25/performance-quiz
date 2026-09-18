@@ -644,10 +644,7 @@ function renderQuestion() {
     `;
   });
 
-  let buttonHTML = '';
-  if (q.type === 'multi') {
-    buttonHTML = `<button class="btn btn-confirm" id="confirm-btn" onclick="confirmAnswer()" disabled>确认答案</button>`;
-  }
+  let buttonHTML = `<button class="btn btn-confirm" id="confirm-btn" onclick="confirmAnswer()" disabled>确认答案</button>`;
 
   container.innerHTML = `
     <div class="question-number">第 ${currentQ + 1} / ${questions.length} 题 ${typeLabel}</div>
@@ -669,13 +666,22 @@ function toggleOption(index) {
   const q = questions[currentQ];
 
   if (q.type === 'single') {
-    // 单选题：直接选中并显示答案
-    selectedOptions = [index];
-    document.querySelectorAll('.option').forEach((el, i) => {
-      el.classList.remove('selected');
-      if (i === index) el.classList.add('selected');
-    });
-    showAnswer();
+    // 单选题：切换选中（点击已选中的取消，点击其他的切换）
+    if (selectedOptions.includes(index)) {
+      selectedOptions = [];
+      document.querySelectorAll('.option').forEach(el => el.classList.remove('selected'));
+    } else {
+      selectedOptions = [index];
+      document.querySelectorAll('.option').forEach((el, i) => {
+        el.classList.remove('selected');
+        if (i === index) el.classList.add('selected');
+      });
+    }
+    // 更新确认按钮状态
+    const confirmBtn = document.getElementById('confirm-btn');
+    if (confirmBtn) {
+      confirmBtn.disabled = selectedOptions.length === 0;
+    }
   } else {
     // 多选题：切换选中状态
     const idx = selectedOptions.indexOf(index);
